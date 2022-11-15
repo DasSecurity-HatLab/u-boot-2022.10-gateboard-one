@@ -1,0 +1,94 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2022 MediaTek Inc. All rights reserved.
+ *
+ * Author: Weijie Gao <weijie.gao@mediatek.com>
+ */
+
+/dts-v1/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include "mt7621.dtsi"
+
+/ {
+	compatible = "hatlab,gateboard-one", "mediatek,mt7621-soc";
+	model = "HATLab GateBoard-One";
+
+	aliases {
+		serial0 = &uart0;
+		spi0 = &spi;
+	};
+
+	chosen {
+		stdout-path = &uart0;
+	};
+};
+
+&pinctrl {
+	state_default: pin_state {
+		gpios {
+			groups = "wdt", "pcie reset", "i2c";
+			function = "gpio";
+		};
+
+		jtag {
+			groups = "jtag";
+			function = "jtag";
+		};
+	};
+};
+
+&uart0 {
+	status = "okay";
+};
+
+&gpio {
+	status = "okay";
+};
+
+&spi {
+	status = "okay";
+	num-cs = <2>;
+
+	spi-flash@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "jedec,spi-nor";
+		spi-max-frequency = <30000000>;
+		reg = <0>;
+	};
+
+	spi-nand@1 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "spi-nand";
+		reg = <1>;
+		spi-max-frequency = <30000000>;
+	};
+};
+
+&eth {
+	status = "okay";
+};
+
+&mmc {
+	cap-sd-highspeed;
+
+	status = "okay";
+};
+
+&ssusb {
+	status = "okay";
+};
+
+&u3phy {
+	status = "okay";
+};
+
+&i2c {
+	status = "okay";
+	gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>, /* PIN3 as SDA */
+			<&gpio0 4 GPIO_ACTIVE_HIGH>; /* PIN4 as CLK */
+	i2c-gpio,delay-us = <50>;
+	i2c-gpio,scl-output-only;
+};

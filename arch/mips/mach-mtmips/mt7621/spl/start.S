@@ -143,6 +143,11 @@ ENTRY(_start)
 	bal	mt7621_cps_init
 	 nop
 
+#if defined(CONFIG_BOARD_MT7621_HATLAB_GATEBOARD_ONE)
+	bal	hatlab_gateboard_one_early_init
+	 nop
+#endif
+
 	/* Prepare for CPU/DDR initialization binary blob */
 	bal	prepare_stage_bin
 	 nop

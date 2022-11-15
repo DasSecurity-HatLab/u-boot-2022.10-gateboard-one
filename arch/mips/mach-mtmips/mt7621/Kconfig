@@ -5,7 +5,7 @@ menu "CPU & DDR configuration"
 
 config MT7621_CPU_FREQ
 	int "CPU Frequency (MHz)"
-	range 400 1200
+	range 400 1300
 	default 880
 
 choice
@@ -99,17 +99,22 @@ config BOARD_MT7621_NAND_RFB
 	  sockets, 1 RGMII to external GbE PHY, 2 audio jacks (in/out),
 	  JTAG pins and expansion GPIO pins.
 
+config BOARD_MT7621_HATLAB_GATEBOARD_ONE
+	bool "HATLab GateBoard One"
+	help
+	  HATLab GateBoard One
+
 endchoice
 
 config SYS_CONFIG_NAME
 	string "Board configuration name"
-	default "mt7621" if  BOARD_MT7621_RFB || BOARD_MT7621_NAND_RFB
+	default "mt7621" if  BOARD_MT7621_RFB || BOARD_MT7621_NAND_RFB || BOARD_MT7621_HATLAB_GATEBOARD_ONE
 
 config SYS_BOARD
 	string "Board name"
-	default "mt7621" if  BOARD_MT7621_RFB || BOARD_MT7621_NAND_RFB
+	default "mt7621" if  BOARD_MT7621_RFB || BOARD_MT7621_NAND_RFB || BOARD_MT7621_HATLAB_GATEBOARD_ONE
 
 config SYS_VENDOR
-	default "mediatek" if BOARD_MT7621_RFB || BOARD_MT7621_NAND_RFB
+	default "mediatek" if BOARD_MT7621_RFB || BOARD_MT7621_NAND_RFB || BOARD_MT7621_HATLAB_GATEBOARD_ONE
 
 endif
