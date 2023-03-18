@@ -3,7 +3,7 @@
 # sudo apt install gcc-mipsel-linux-gnu
 
 JOBS=`grep -c ^processor /proc/cpuinfo`
-mkdir -p ./build-output
+mkdir -p ./build-output ./build-hatlab_gateboard-one
 
 export CROSS_COMPILE=mipsel-linux-gnu-
 cp ./mt7621_stage_sram.blob ./build-hatlab_gateboard-one/mt7621_stage_sram.bin
